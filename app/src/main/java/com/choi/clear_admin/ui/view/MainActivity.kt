@@ -1,9 +1,11 @@
-package com.choi.clear_admin
+package com.choi.clear_admin.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.choi.clear_admin.databinding.ActivityMainBinding
+import com.choi.clear_admin.ui.adapter.commRVAdapter
+import com.choi.clear_admin.ui.adapter.friendRVAdapter
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
