@@ -85,29 +85,28 @@
 
             </ImageView>
             <TextView
+                android:id="@+id/item_fed_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/item_fed_tv"
+                app:layout_constraintTop_toBottomOf="@id/item_comm_iv"
+                android:text="Comment">
+            </TextView>
+            <TextView
                 android:id="@+id/item_fed_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/item_fed_iv"
-                app:layout_constraintTop_toBottomOf="@id/item_comm_iv"
-                android:text="Comment">
-            </TextView>
-            <ImageView
-                android:id="@+id/item_fed_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_fed_tv"
-                app:layout_constraintBottom_toTopOf="@id/item_admin_comm_tv"
-                android:src="@drawable/ic_launcher_background">
-            </ImageView>
+                app:layout_constraintBottom_toTopOf="@id/item_admin_comm_tv">
+            </TextView>
             <TextView
                 android:id="@+id/item_admin_comm_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_fed_iv"
+                app:layout_constraintTop_toBottomOf="@id/item_fed_tv"
                 app:layout_constraintBottom_toTopOf="@id/item_admin_comm_et"
                 android:text="코멘트">
             </TextView>
@@ -134,8 +133,20 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_admin_score_tv"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/item_admin_submit_btn"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constrainedWidth="true">
             </EditText>
+            <Button
+                android:id="@+id/item_admin_submit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/item_admin_score_et"
+                app:layout_constraintHorizontal_chainStyle="spread">
+            </Button>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

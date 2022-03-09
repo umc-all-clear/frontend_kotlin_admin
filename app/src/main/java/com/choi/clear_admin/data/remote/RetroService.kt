@@ -1,8 +1,12 @@
 package com.choi.clear_admin.data.remote
 
+import com.choi.clear_admin.data.entity.GetCommResult
+import com.choi.clear_admin.data.entity.ReqCommData
 import com.choi.clear_admin.ui.view.CommView
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -22,6 +26,24 @@ object RetroService {
     }
 
     fun reqComm() {
+        val retro = makeRetrofit()
+        val service = retro.create(RetroServiceInterface::class.java)
 
+        val call = service.setComm()
+
+        call.enqueue(object: retrofit2.Callback<GetCommResult> {
+            override fun onResponse(call: Call<GetCommResult>, response: Response<GetCommResult>) {
+                if (response.isSuccessful) {
+                    commView.onCommGetSuccess(response.body()!!)
+                }
+                else {
+                    commView.onCommGetFailure(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<GetCommResult>, t: Throwable) {
+            }
+
+        })
     }
 }
