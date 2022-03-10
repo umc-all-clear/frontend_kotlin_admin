@@ -35,15 +35,17 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/item_before_iv"
                 app:layout_constraintTop_toBottomOf="@+id/item_date_tv"
-                android:text="before">
+                android:text="before"
+                android:textSize="20dp">
             </TextView>
             <ImageView
                 android:id="@+id/item_before_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_before_tv"
                 app:layout_constraintBottom_toTopOf="@id/item_after_tv"
+                app:layout_constraintRight_toRightOf="parent"
                 android:src="@drawable/ic_launcher_background">
             </ImageView>
             <TextView
@@ -54,34 +56,18 @@
                 app:layout_constraintBottom_toTopOf="@id/item_after_iv"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:text="after"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:textSize="20dp">
             </TextView>
             <ImageView
                 android:id="@+id/item_after_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_after_tv"
-                app:layout_constraintBottom_toTopOf="@id/item_comm_tv"
+                app:layout_constraintBottom_toTopOf="@id/item_fed_title_tv"
+                app:layout_constraintRight_toRightOf="parent"
                 android:src="@drawable/ic_launcher_background">
-
-            </ImageView>
-            <TextView
-                android:id="@+id/item_comm_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_after_iv"
-                app:layout_constraintBottom_toTopOf="@id/item_comm_iv"
-                android:text="After">
-            </TextView>
-            <ImageView
-                android:id="@+id/item_comm_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_comm_tv"
-                app:layout_constraintBottom_toTopOf="@id/item_comm_tv">
 
             </ImageView>
             <TextView
@@ -90,8 +76,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/item_fed_tv"
-                app:layout_constraintTop_toBottomOf="@id/item_comm_iv"
-                android:text="Comment">
+                app:layout_constraintTop_toBottomOf="@id/item_after_iv"
+                android:text="Comment"
+                android:textSize="20dp">
             </TextView>
             <TextView
                 android:id="@+id/item_fed_tv"
@@ -108,7 +95,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_fed_tv"
                 app:layout_constraintBottom_toTopOf="@id/item_admin_comm_et"
-                android:text="코멘트">
+                android:text="코멘트"
+                android:textSize="20dp">
             </TextView>
             <EditText
                 android:id="@+id/item_admin_comm_et"
@@ -125,7 +113,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_admin_comm_et"
                 app:layout_constraintBottom_toTopOf="@id/item_admin_score_et"
-                android:text="평점">
+                android:text="평점"
+                android:textSize="20dp">
             </TextView>
             <EditText
                 android:id="@+id/item_admin_score_et"
@@ -145,7 +134,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/item_admin_score_et"
-                app:layout_constraintHorizontal_chainStyle="spread">
+                app:layout_constraintHorizontal_chainStyle="spread"
+                android:text="제출">
             </Button>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

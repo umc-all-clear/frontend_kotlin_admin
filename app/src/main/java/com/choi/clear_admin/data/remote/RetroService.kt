@@ -1,8 +1,10 @@
 package com.choi.clear_admin.data.remote
 
 import com.choi.clear_admin.data.entity.GetCommResult
-import com.choi.clear_admin.data.entity.ReqCommData
+import com.choi.clear_admin.data.entity.GetReqResult
+import com.choi.clear_admin.data.entity.ReqComm
 import com.choi.clear_admin.ui.view.CommView
+import com.choi.clear_admin.ui.view.ReqView
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -12,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetroService {
     lateinit var commView: CommView
+    lateinit var reqView: ReqView
 
     fun makeRetrofit(): Retrofit {
         val clientBuilder = OkHttpClient.Builder()
@@ -45,5 +48,28 @@ object RetroService {
             }
 
         })
+    }
+
+    fun reqSubmitComm(req: ReqComm, pos: Int) {
+        val retro = makeRetrofit()
+        val service = retro.create(RetroServiceInterface::class.java)
+
+        val call = service.reqComm(req)
+
+        call.enqueue(object :retrofit2.Callback<GetReqResult> {
+            override fun onResponse(call: Call<GetReqResult>, response: Response<GetReqResult>) {
+                if (response.isSuccessful) {
+                    reqView.onReqGetSuccess(response.body()!!, pos)
+                }
+                else {
+                    reqView.onReqGetFailure(response.body().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<GetReqResult>, t: Throwable) {
+            }
+
+        })
+
     }
 }

@@ -3,14 +3,17 @@ package com.choi.clear_admin.ui.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.choi.clear_admin.data.entity.GetCommResult
+import com.choi.clear_admin.data.entity.GetReqResult
+import com.choi.clear_admin.data.entity.ReqComm
 import com.choi.clear_admin.data.entity.Result
 import com.choi.clear_admin.data.remote.RetroService
 import com.choi.clear_admin.databinding.ActivityMainBinding
 import com.choi.clear_admin.ui.adapter.commRVAdapter
 import com.choi.clear_admin.ui.adapter.friendRVAdapter
 
-class MainActivity : AppCompatActivity(), CommView {
+class MainActivity : AppCompatActivity(), CommView, ReqView {
     lateinit var binding: ActivityMainBinding
     lateinit var commAdapter: commRVAdapter
 
@@ -48,8 +51,10 @@ class MainActivity : AppCompatActivity(), CommView {
         }
 
         commAdapter.setOnclick(object : commRVAdapter.setOnClickListener {
-            override fun setOnClick(idx: Int, score: Float, comm: String) {
-                
+            override fun setOnClick(idx: Int, score: Float, comm: String, pos: Int) {
+                val conn = RetroService
+                conn.reqView = this@MainActivity
+                conn.reqSubmitComm(ReqComm(idx, score, comm), pos)
             }
 
         })
@@ -74,6 +79,17 @@ class MainActivity : AppCompatActivity(), CommView {
     }
 
     override fun onCommGetFailure(code: String) {
-        TODO("Not yet implemented")
+    }
+
+    override fun onReqGetSuccess(data: GetReqResult, pos: Int) {
+        Toast.makeText(this, "평가 완료", Toast.LENGTH_SHORT).show()
+        var origin = commAdapter.dataArr
+        origin.removeAt(pos)
+
+        commAdapter.dataArr = origin
+        commAdapter.notifyItemRemoved(pos)
+    }
+
+    override fun onReqGetFailure(code: String) {
     }
 }

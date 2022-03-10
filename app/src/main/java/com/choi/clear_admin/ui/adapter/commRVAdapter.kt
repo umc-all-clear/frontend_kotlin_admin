@@ -2,6 +2,7 @@ package com.choi.clear_admin.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.choi.clear_admin.data.entity.Result
@@ -15,7 +16,7 @@ class commRVAdapter(dataArr: ArrayList<Result>, val act: MainActivity): Recycler
     var dataArr: ArrayList<Result> = dataArr
 
     interface setOnClickListener {
-        fun setOnClick(idx: Int, score: Float, comm: String)
+        fun setOnClick(idx: Int, score: Float, comm: String, pos: Int)
     }
 
     fun setOnclick(setting: setOnClickListener) {
@@ -38,7 +39,7 @@ class commRVAdapter(dataArr: ArrayList<Result>, val act: MainActivity): Recycler
 
     inner class ViewHolder(val binding: ItemMainCommBinding): RecyclerView.ViewHolder(binding.root) {
         fun init(pos: Int) {
-            binding.itemDateTv.text = dataArr[pos].cleanedTime
+            binding.itemDateTv.text = "신청일자: " + dataArr[pos].cleanedTime
             Glide.with(act).load(dataArr[pos].beforePicUrl).into(binding.itemBeforeIv)
             Glide.with(act).load(dataArr[pos].afterPicUrl).into(binding.itemAfterIv)
             binding.itemFedTv.text = dataArr[pos].contents
@@ -49,17 +50,17 @@ class commRVAdapter(dataArr: ArrayList<Result>, val act: MainActivity): Recycler
         fun setListener(pos: Int) {
             binding.itemAdminSubmitBtn.setOnClickListener {
                 var scoreErr = false
-                var comm = ""
-                var score = 0.00f
+                var score = 0.0f
                 try {
                     var score = binding.itemAdminScoreEt.text.toString().toFloat()
                 } catch (e: NumberFormatException) {
                     scoreErr = true
+                    Toast.makeText(act, "0.0형식으로 입력해주세요", Toast.LENGTH_SHORT).show()
                 }
-                comm = binding.itemAdminCommEt.text.toString()
+                var comm = binding.itemAdminCommEt.text.toString()
 
-                if (comm != "" && scoreErr == false) {
-                    onClick.setOnClick(dataArr[pos].id!!, score, comm)
+                if (scoreErr == false) {
+                    onClick.setOnClick(dataArr[pos].id!!, score, comm, pos)
                 }
             }
         }
