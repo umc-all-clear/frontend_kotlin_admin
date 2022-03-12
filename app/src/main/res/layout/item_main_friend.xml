@@ -11,6 +11,7 @@
     android:layout_height="wrap_content"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toTopOf="@id/friend_nic"
+    app:layout_constraintLeft_toLeftOf="parent"
     android:text="id"
     android:textSize="20dp">
 </TextView>
@@ -19,6 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/friend_id"
+        app:layout_constraintBottom_toTopOf="@id/friend_pas"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:text="nic"
         android:textSize="20dp">
     </TextView>
@@ -27,17 +30,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/friend_nic"
-        app:layout_constraintBottom_toTopOf="@id/friend_mail"
-        android:text="pas"
-        android:textSize="20dp">
-    </TextView>
-    <TextView
-        android:id="@+id/friend_mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/friend_pas"
         app:layout_constraintBottom_toTopOf="@id/friend_date"
-        android:text="mail"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="pas"
         android:textSize="20dp">
     </TextView>
     <TextView
@@ -45,7 +40,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/friend_mail"
+        app:layout_constraintTop_toBottomOf="@id/friend_pas"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:text="date"
         android:textSize="20dp">
     </TextView>

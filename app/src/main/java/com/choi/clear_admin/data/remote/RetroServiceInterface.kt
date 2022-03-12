@@ -1,10 +1,12 @@
 package com.choi.clear_admin.data.remote
 
 import com.choi.clear_admin.data.entity.GetCommResult
+import com.choi.clear_admin.data.entity.GetFriend
 import com.choi.clear_admin.data.entity.GetReqResult
 import com.choi.clear_admin.data.entity.ReqComm
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 
@@ -14,4 +16,7 @@ interface RetroServiceInterface {
 
     @PATCH("/admin/evaluate")
     fun reqComm(@Body req: ReqComm): Call<GetReqResult>
+
+    @GET("/users/")
+    fun reqFriend(): Call<GetFriend>
 }

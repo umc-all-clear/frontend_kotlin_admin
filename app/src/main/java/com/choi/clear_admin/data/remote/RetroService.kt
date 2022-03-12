@@ -1,9 +1,11 @@
 package com.choi.clear_admin.data.remote
 
 import com.choi.clear_admin.data.entity.GetCommResult
+import com.choi.clear_admin.data.entity.GetFriend
 import com.choi.clear_admin.data.entity.GetReqResult
 import com.choi.clear_admin.data.entity.ReqComm
 import com.choi.clear_admin.ui.view.CommView
+import com.choi.clear_admin.ui.view.FriendView
 import com.choi.clear_admin.ui.view.ReqView
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetroService {
     lateinit var commView: CommView
     lateinit var reqView: ReqView
+    lateinit var friendView: FriendView
 
     fun makeRetrofit(): Retrofit {
         val clientBuilder = OkHttpClient.Builder()
@@ -71,5 +74,27 @@ object RetroService {
 
         })
 
+    }
+
+    fun reqFriend() {
+        val retro = makeRetrofit()
+        val service = retro.create(RetroServiceInterface::class.java)
+
+        val call = service.reqFriend()
+
+        call.enqueue(object: retrofit2.Callback<GetFriend>{
+            override fun onResponse(call: Call<GetFriend>, response: Response<GetFriend>) {
+                if (response.isSuccessful) {
+                    friendView.onFriendGetSuccess(response.body()!!)
+                }
+                else {
+                    friendView.onFriendGetFailure(response.code()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<GetFriend>, t: Throwable) {
+            }
+
+        })
     }
 }
